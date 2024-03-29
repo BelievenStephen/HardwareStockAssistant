@@ -32,3 +32,12 @@ This project customizes a Spring application for retail inventory management, ad
 - **Lines Added**: 1-9
 - **Description**: Created AboutController within the `controllers` package to manage GET requests for the `/about` URL and render the `about.html` template. This allows users to access and view the About page which contains information about the automotive parts shop.
 
+## Part D: About Page Navigation (cont'd)
+- **Prompt**: Add an “About” page to the application to describe the automotive parts shop and include navigation.
+- **File**: `mainscreen.html`
+  - Added navigation bar with links to Home and About pages (lines 20-35).
+- **File**: `about.html`
+  - Created About page with company information and navigation bar (lines 10-30).
+  - Added back link to Main Screen at the bottom of the page content (line 40).
+- **File**: `AboutController.java`
+  - Created new controller for About page to handle navigation (lines 5-12).
