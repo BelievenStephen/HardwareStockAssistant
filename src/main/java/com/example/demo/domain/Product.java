@@ -22,14 +22,14 @@ import java.util.Set;
 public class Product implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    long id;
-    String name;
+    private long id;
+    private String name;
     @Min(value = 0, message = "Price value must be positive")
-    double price;
+    private double price;
     @Min(value = 0, message = "Inventory value must be positive")
-    int inv;
+    private int inv;
     @ManyToMany(cascade=CascadeType.ALL, mappedBy = "products")
-    Set<Part> parts= new HashSet<>();
+    private Set<Part> parts= new HashSet<>();
 
     public Product() {
     }
@@ -40,12 +40,15 @@ public class Product implements Serializable {
         this.inv = inv;
     }
 
-    public Product(long id, String name, double price, int inv) {
-        this.id = id;
-        this.name = name;
-        this.price = price;
-        this.inv = inv;
-    }
+//    public Product(long id, String name, double price, int inv) {
+//        this.id = id;
+//        this.name = name;
+//        this.price = price;
+//        this.inv = inv;
+//    }
+
+//    public Product(String name, double price, int inventory, int minInv, int maxInv) {
+//    }
 
     public long getId() {
         return id;

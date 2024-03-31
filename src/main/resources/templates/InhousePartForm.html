@@ -1,33 +1,53 @@
 <!DOCTYPE html>
-<html lang="en">
-<html xmlns:th="https://www.thymeleaf.org">
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Part Form</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Inhouse Part Form</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-<h1>Inhouse Part Detail</h1>
-<form action="#" th:action="@{/showFormAddInPart}" th:object="${inhousepart}" method="POST"}>
+<div class="container">
+    <h1>Inhouse Part Detail</h1>
+    <form th:action="@{/showFormAddInPart}" th:object="${inhousepart}" method="POST">
+        <input type="hidden" th:field="*{id}"/>
 
-<!-- Add hidden form field to handle update -->
-    <p><input type="hidden" th:field="*{id}"/></p>
+        <div class="form-group">
+            <label for="name">Name:</label>
+            <input type="text" id="name" th:field="*{name}" placeholder="Part Name" class="form-control"/>
+        </div>
 
-<p><input type="text" th:field="*{name}" placeholder="Name" class="form-control mb-4 col-4"/></p>
+        <div class="form-group">
+            <label for="price">Price:</label>
+            <input type="number" id="price" th:field="*{price}" placeholder="Price" class="form-control"/>
+            <div th:errorclass="alert alert-danger" th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></div>
+        </div>
 
-<p><input type="text" path="price" th:field="*{price}" placeholder= "Price" class="form-control mb-4 col-4"/></p>
-<p th:if="${#fields.hasErrors('price')}" th:errors="*{price}">Price Error</p>
+        <div class="form-group">
+            <label for="inv">Inventory:</label>
+            <input type="number" id="inv" th:field="*{inv}" placeholder="Current Inventory" class="form-control"/>
+            <div th:if="${#fields.hasErrors('inv')}" th:errors="*{inv}" class="alert alert-danger"></div>
+        </div>
 
-<p><input type="text" path="inv" th:field="*{inv}" placeholder="Inventory" class="form-control mb-4 col-4"/></p>
-    <p th:if="${#fields.hasErrors('inv')}" th:errors="*{inv}">Inventory Error</p>
+        <div class="form-group">
+            <label for="minInv">Minimum Inventory:</label>
+            <input type="number" id="minInv" th:field="*{minInv}" placeholder="Minimum Inventory" class="form-control"/>
+            <div th:if="${#fields.hasErrors('minInv')}" th:errors="*{minInv}" class="alert alert-danger"></div>
+        </div>
 
-    <p><input type="text" th:field="*{partId}" placeholder="Part ID" class="form-control mb-4 col-4"/></p>
+        <div class="form-group">
+            <label for="maxInv">Maximum Inventory:</label>
+            <input type="number" id="maxInv" th:field="*{maxInv}" placeholder="Maximum Inventory" class="form-control"/>
+            <div th:if="${#fields.hasErrors('maxInv')}" th:errors="*{maxInv}" class="alert alert-danger"></div>
+        </div>
 
-<p><input type="submit" value="Submit" /></p>
-</form>
-<p><errors path="price" cssClass=""error/><p>
 
-<a href="http://localhost:8080/">Link
-    to Main Screen</a>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+
+    <a href="/">Link to Main Screen</a>
+</div>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </body>
 </html>

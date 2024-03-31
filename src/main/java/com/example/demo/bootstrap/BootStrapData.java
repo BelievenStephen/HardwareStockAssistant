@@ -40,21 +40,25 @@ public class BootStrapData implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-        if (partRepository.count() == 0 && productRepository.count() == 0) {
+        if (partRepository.count() == 0) {
             // First Part
             OutsourcedPart part1 = new OutsourcedPart();
             part1.setCompanyName("AutoParts Central");
             part1.setName("High-Performance Brake Pads");
             part1.setInv(60);
             part1.setPrice(150.00);
+            part1.setMinInv(5);
+            part1.setMaxInv(80);
             outsourcedPartRepository.save(part1);
 
-            // Additional Parts
-            createAndSaveOutsourcedPart("Synthetic Motor Oil", 75, 45.99, "AutoParts Central");
-            createAndSaveOutsourcedPart("High Performance Air Intake System", 30, 319.99, "AutoParts Central");
-            createAndSaveOutsourcedPart("High-Performance Battery", 45, 199.99, "AutoParts Central");
-            createAndSaveOutsourcedPart("Adjustable Coilover Suspension Kit", 20, 899.99, "AutoParts Central");
 
+            // Additional Parts
+            createAndSaveOutsourcedPart("Synthetic Motor Oil", 75, 45.99, "AutoParts Central", 10, 100);
+            createAndSaveOutsourcedPart("High Performance Air Intake System", 30, 319.99, "AutoParts Central", 5, 50);
+            createAndSaveOutsourcedPart("High-Performance Battery", 45, 199.99, "AutoParts Central", 10, 100);
+            createAndSaveOutsourcedPart("Adjustable Coilover Suspension Kit", 20, 899.99, "AutoParts Central", 5, 50);
+        }
+        if (productRepository.count() == 0) {
             // First Product
             Product product1 = new Product("Turbocharger Kit", 1499.99, 10);
             productRepository.save(product1);
@@ -64,6 +68,7 @@ public class BootStrapData implements CommandLineRunner {
             createAndSaveProduct("ECU Tuning Module", 499.99, 25);
             createAndSaveProduct("Full Synthetic Oil Change Kit", 84.99, 50);
             createAndSaveProduct("Performance Clutch Kit", 749.99, 15);
+
         }
 
         System.out.println("Started in Bootstrap");
@@ -71,12 +76,14 @@ public class BootStrapData implements CommandLineRunner {
         System.out.println("Number of Parts: " + partRepository.count());
     }
 
-    private void createAndSaveOutsourcedPart(String name, int inventory, double price, String companyName) {
+    private void createAndSaveOutsourcedPart(String name, int inventory, double price, String companyName, int minInv, int maxInv) {
         OutsourcedPart part = new OutsourcedPart();
         part.setName(name);
         part.setInv(inventory);
         part.setPrice(price);
         part.setCompanyName(companyName);
+        part.setMinInv(minInv);
+        part.setMaxInv(maxInv);
         outsourcedPartRepository.save(part);
     }
 
@@ -84,4 +91,6 @@ public class BootStrapData implements CommandLineRunner {
         Product product = new Product(name, price, inventory);
         productRepository.save(product);
     }
+
 }
+
