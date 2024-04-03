@@ -1,3 +1,80 @@
-183aa50 - BelievenStephen, 2024-03-27 : Updated mainscreen.html to reflect Automotive Parts Shop theme
-23b43e3 - BelievenStephen, 2024-03-27 : **File Created**: `PROJECT_README.md`
+commit 475e71a70384d96e1e739cf232140161320dc3ad
+Author: BelievenStephen <sGeluz55@aol.com>
+Date:   Tue Apr 2 19:09:59 2024 -0700
 
+    Completed Part H
+
+commit 9ac1eee8ac1134c37b7015d63018d1f6c43edb42
+Author: BelievenStephen <sGeluz55@aol.com>
+Date:   Sat Mar 30 18:44:26 2024 -0700
+
+    Completed modifications for step G: Implemented inventory min/max tracking, updated forms, and enforced inventory constraints.
+
+commit c5c404d0e24ca676727a7de30f3d783ac3e7ab58
+Author: BelievenStephen <sGeluz55@aol.com>
+Date:   Fri Mar 29 21:10:03 2024 -0700
+
+    Added "Buy Now" functionality and messages to product listings
+
+commit 03a24b10265023707ee7e6407aa56c05f70dab46
+Author: BelievenStephen <sGeluz55@aol.com>
+Date:   Fri Mar 29 18:47:35 2024 -0700
+
+    Added sample inventory data for parts and products to BootstrapData
+
+commit 66e2dc553b54e181b67d1e8e07bcf432097470a0
+Author: BelievenStephen <sGeluz55@aol.com>
+Date:   Fri Mar 29 14:38:03 2024 -0700
+
+    Implemented navigation between Main Screen and About page.
+
+commit 9067c11ae9f53fdda74d3393bffd0d17fc5febf8
+Author: BelievenStephen <sGeluz55@aol.com>
+Date:   Wed Mar 27 19:26:00 2024 -0700
+
+    Added AboutController for handling About page requests
+
+commit 183aa5012e2dc53e2e114480355f8680a6fadf72
+Author: BelievenStephen <sGeluz55@aol.com>
+Date:   Wed Mar 27 18:50:56 2024 -0700
+
+    Updated mainscreen.html to reflect Automotive Parts Shop theme
+
+commit 23b43e3cceca94f62dc1640bb264c05d55874c28
+Author: BelievenStephen <sGeluz55@aol.com>
+Date:   Wed Mar 27 17:49:35 2024 -0700
+
+    **File Created**: `PROJECT_README.md`
+
+commit 41e0796049c783b47b185beaa741ae42f96d7261
+Merge: 3fdf7d2 1853582
+Author: Matt Alexander <matt@twocom.com>
+Date:   Thu Jan 11 18:55:08 2024 +0000
+
+    Updated AddProductController
+    
+    See merge request wgu-gitlab-environment/task-templates/d287-java-frameworks!2
+
+commit 1853582aaa1eae27b70ebd1836e7179de25f9235
+Author: mel.tomeo <mel.tomeo@wgu.edu>
+Date:   Thu Jan 11 13:49:29 2024 -0500
+
+    Updated AddProductController
+
+commit 3fdf7d2fe775e4046d2c99c094281d95c2fe0ed1
+Author: Zohar Sajith <zohar.sajith@cdw.com>
+Date:   Mon Feb 27 18:09:13 2023 +0000
+
+    Added Branching instructions to README
+
+commit affdd23c3819e75dd98f87e66da8ca6c113dd298
+Author: matt.alexander <matt.alexander@wgu.edu>
+Date:   Thu Feb 16 16:44:55 2023 -0500
+
+    Upload base project
+
+commit 39900dde284c2f532c35e98bdf1ab07661bcba23
+Author: Emilio Miller <emilio.miller@siriusfederal.com>
+Date:   Thu Feb 16 21:41:34 2023 +0000
+
+    Upload README

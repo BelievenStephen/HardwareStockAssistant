@@ -89,12 +89,26 @@ Implemented functionality to track minimum and maximum inventory levels for part
 These changes collectively ensure that inventory levels for parts are tracked within specified minimum and maximum limits, improving the inventory management capabilities of our application.
 
 
-## Step H: Validations for between, maximum and minimum fields.
+## Step H: Validations for between, maximum, and minimum fields
 - **Prompt**: Add validation for between or at the maximum and minimum fields.
 ### Summary of Changes
-Implemented functionality to display error messages for
+Implemented validations to ensure inventory levels for parts and products remain within specified minimum and maximum thresholds. Custom error messages are displayed for any violations, enhancing the robustness of inventory management.
 ### Detailed Changes
 - **Part.java**
-  - Added validation for low inventory when adding or updating the parts (Lines 54-56, 98-100).
-  - Added validation for low inventory when adding or updating the products (Lines 112-116).
-  - Added validation if inventory is greater than maximum when adding or updating the parts (Lines 57-59, 101-103).
+  - Added checks to enforce inventory being within minimum and maximum limits for parts and products upon addition or update (Lines 54-59, 98-103, 112-116).
+- **BootStrapData.java**
+  - Ensured part/product associations are initialized correctly (Lines 74-102).
+- **OutsourcedPartRepository.java**
+  - Adjusted query for searching parts to reflect changes (Line 8).
+- **ProductRepository.java**
+  - Updated product search functionality (Line 13).
+- **Exceptions Package**
+  - Created `InventoryConstraintViolationException` to handle inventory-related exceptions elegantly (Lines 3-7).
+- **error.html**
+  - Introduced an error page to display user-friendly error messages (Lines 1-12).
+- **AddProductController.java**
+  - Refined `submitForm` method to include inventory validation logic (Lines 62-82).
+- **ProductService.java**
+  - Declared `updateProductInventory` method to maintain inventory integrity across products and parts (Line 20).
+- **Product.java**
+  - Modified `@ManyToMany` annotation to enable eager loading, preventing lazy initialization issues (Line 31).
