@@ -2,6 +2,7 @@ package com.example.demo.controllers;
 
 import com.example.demo.domain.Part;
 import com.example.demo.domain.Product;
+import com.example.demo.exceptions.InventoryConstraintViolationException;
 import com.example.demo.service.PartService;
 import com.example.demo.service.ProductService;
 import com.example.demo.repositories.ProductRepository;
@@ -37,6 +38,8 @@ public class AddProductController {
 //    private List<Part> theParts;
     private static Product product1;
     private Product product;
+    @Autowired
+    private ProductService productService;
 
 
     @GetMapping("/showFormAddProduct")
@@ -55,50 +58,29 @@ public class AddProductController {
         return "productForm";
     }
 
-    @PostMapping("/showFormAddProduct")
-    public String submitForm(@Valid @ModelAttribute("product") Product product, BindingResult bindingResult, Model theModel) {
-        theModel.addAttribute("product", product);
-
-        if(bindingResult.hasErrors()){
-            ProductService productService = context.getBean(ProductServiceImpl.class);
-            Product product2 = new Product();
-            try {
-                product2 = productService.findById((int) product.getId());
-            } catch (Exception e) {
-                System.out.println("Error Message " + e.getMessage());
-            }
-            theModel.addAttribute("parts", partService.findAll());
-            List<Part>availParts=new ArrayList<>();
-            for(Part p: partService.findAll()){
-                if(!product2.getParts().contains(p))availParts.add(p);
-            }
-            theModel.addAttribute("availparts",availParts);
-            theModel.addAttribute("assparts",product2.getParts());
-            return "productForm";
-        }
- //       theModel.addAttribute("assparts", assparts);
- //       this.product=product;
-//        product.getParts().addAll(assparts);
-        else {
-            ProductService repo = context.getBean(ProductServiceImpl.class);
-            if(product.getId()!=0) {
-                Product product2 = repo.findById((int) product.getId());
-                PartService partService1 = context.getBean(PartServiceImpl.class);
-                if(product.getInv()- product2.getInv()>0) {
-                    for (Part p : product2.getParts()) {
-                        int inv = p.getInv();
-                        p.setInv(inv - (product.getInv() - product2.getInv()));
-                        partService1.save(p);
-                    }
-                }
-            }
-            else{
-                product.setInv(0);
-            }
-            repo.save(product);
-            return "confirmationaddproduct";
+@PostMapping("/showFormAddProduct")
+public String submitForm(@Valid @ModelAttribute("product") Product product, BindingResult bindingResult, Model model) {
+    if (!bindingResult.hasErrors()) {
+        try {
+            productService.updateProductInventory(product.getId(), product.getInv()); // Adjust inventories
+            productService.save(product);
+            return "redirect:/confirmationaddproduct";
+        } catch (InventoryConstraintViolationException ex) {
+            bindingResult.rejectValue("inv", "error.product", ex.getMessage());
         }
     }
+
+    model.addAttribute("parts", partService.findAll());
+    List<Part> availParts = new ArrayList<>();
+    for (Part p : partService.findAll()) {
+        if (!product.getParts().contains(p)) availParts.add(p);
+    }
+    model.addAttribute("availparts", availParts);
+    model.addAttribute("assparts", product.getParts());
+
+    return "productForm";
+}
+
 
     @GetMapping("/showProductFormForUpdate")
     public String showProductFormForUpdate(@RequestParam("productID") int theId, Model theModel) {

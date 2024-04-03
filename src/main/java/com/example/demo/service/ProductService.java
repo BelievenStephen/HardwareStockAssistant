@@ -2,6 +2,7 @@ package com.example.demo.service;
 
 import com.example.demo.domain.Part;
 import com.example.demo.domain.Product;
+import com.example.demo.exceptions.InventoryConstraintViolationException;
 
 import java.util.List;
 
@@ -17,5 +18,5 @@ public interface ProductService {
     public void save (Product theProduct);
     public void deleteById(int theId);
     public List<Product> listAll(String keyword);
-
+    void updateProductInventory(Long productId, int newInventory) throws InventoryConstraintViolationException;
 }

@@ -28,7 +28,7 @@ public class Product implements Serializable {
     private double price;
     @Min(value = 0, message = "Inventory value must be positive")
     private int inv;
-    @ManyToMany(cascade=CascadeType.ALL, mappedBy = "products")
+    @ManyToMany(fetch = FetchType.EAGER, cascade=CascadeType.ALL, mappedBy = "products")
     private Set<Part> parts= new HashSet<>();
 
     public Product() {
@@ -39,16 +39,6 @@ public class Product implements Serializable {
         this.price = price;
         this.inv = inv;
     }
-
-//    public Product(long id, String name, double price, int inv) {
-//        this.id = id;
-//        this.name = name;
-//        this.price = price;
-//        this.inv = inv;
-//    }
-
-//    public Product(String name, double price, int inventory, int minInv, int maxInv) {
-//    }
 
     public long getId() {
         return id;

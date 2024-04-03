@@ -7,15 +7,13 @@ import com.example.demo.service.OutsourcedPartService;
 import com.example.demo.service.OutsourcedPartServiceImpl;
 import com.example.demo.service.PartService;
 import com.example.demo.service.PartServiceImpl;
+import com.example.demo.exceptions.InventoryConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 /**
@@ -51,5 +49,11 @@ public class AddOutsourcedPartController {
             outsourcedPartService.save(part);
             return "confirmationaddpart";
         }
+    }
+
+    @ExceptionHandler(InventoryConstraintViolationException.class)
+    public String handleInventoryConstraintViolation(InventoryConstraintViolationException ex, Model model) {
+        model.addAttribute("errorMessage", ex.getMessage());
+        return "parts/error";
     }
 }

@@ -3,7 +3,7 @@ package com.example.demo.domain;
 import com.example.demo.validators.ValidDeletePart;
 
 import javax.persistence.*;
-        import javax.validation.constraints.Max;
+import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import java.io.Serializable;
 import java.util.HashSet;
@@ -25,11 +25,11 @@ public abstract class Part implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     long id;
     String name;
-    @Min(value = 0, message = "Price value must be positive")
+    @Min(value = 0, message = "Price value must be positive value")
     double price;
-    @Min(value = 0, message = "Inventory value must be positive")
+    @Min(value = 0, message = "Inventory value must be positive value")
     int inv;
-    @Min(value = 0, message = "The minimum inventory must not be less than zero")
+    @Min(value = 0, message = "Minimum inventory must not be less than zero")
     @Column(name = "min_inv")
     private Integer minInv;
 
@@ -51,6 +51,12 @@ public abstract class Part implements Serializable {
         this.inv = inv;
         this.minInv = minInv;
         this.maxInv = maxInv;
+        if(inv < minInv){
+            System.out.println("Error: Low Inventory");
+        }
+        if(inv > maxInv){
+            System.out.println("Error: Inventory exceeded the maximum inventory");
+        }
     }
 
     public Part(long id, String name, double price, int inv) {
@@ -89,6 +95,12 @@ public abstract class Part implements Serializable {
     }
 
     public void setInv(int inv) {
+        if(inv < minInv){
+            System.out.println("Error: Low Inventory");
+        }
+        if(inv > maxInv){
+            System.out.println("Error: Inventory exceeded the maximum inventory");
+        }
         this.inv = inv;
     }
 
@@ -97,6 +109,11 @@ public abstract class Part implements Serializable {
     }
 
     public void setProducts(Set<Product> products) {
+        for (Product product : products) {
+            if(product.getInv() < minInv){
+                System.out.println("Error: Low Inventory!!");
+            }
+        }
         this.products = products;
     }
 

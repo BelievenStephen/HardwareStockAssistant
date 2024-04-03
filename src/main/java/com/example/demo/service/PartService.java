@@ -18,4 +18,6 @@ public interface PartService {
     public void deleteById(int theId);
 
     public List<Part> listAll(String keyword);
+
+    void updatePartInventory(int id, int i);
 }

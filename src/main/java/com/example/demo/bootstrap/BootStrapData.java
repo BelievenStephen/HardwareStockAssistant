@@ -71,6 +71,38 @@ public class BootStrapData implements CommandLineRunner {
 
         }
 
+        if (partRepository.count() > 0 && productRepository.count() > 0) {
+            // Retrieve parts
+            OutsourcedPart brakePads = outsourcedPartRepository.findByName("High-Performance Brake Pads").orElseThrow(() -> new RuntimeException("Part not found"));
+            OutsourcedPart syntheticOil = outsourcedPartRepository.findByName("Synthetic Motor Oil").orElseThrow(() -> new RuntimeException("Part not found"));
+            OutsourcedPart airIntake = outsourcedPartRepository.findByName("High Performance Air Intake System").orElseThrow(() -> new RuntimeException("Part not found"));
+            OutsourcedPart battery = outsourcedPartRepository.findByName("High-Performance Battery").orElseThrow(() -> new RuntimeException("Part not found"));
+            OutsourcedPart suspensionKit = outsourcedPartRepository.findByName("Adjustable Coilover Suspension Kit").orElseThrow(() -> new RuntimeException("Part not found"));
+
+
+            // Retrieve products
+            Product turboKit = productRepository.findByName("Turbocharger Kit").orElseThrow(() -> new RuntimeException("Product not found"));
+            Product ecuModule = productRepository.findByName("ECU Tuning Module").orElseThrow(() -> new RuntimeException("Product not found"));
+            Product clutchKit = productRepository.findByName("Performance Clutch Kit").orElseThrow(() -> new RuntimeException("Product not found"));
+
+
+            // Turbocharger Kit associations
+            turboKit.getParts().add(brakePads);
+            turboKit.getParts().add(airIntake);
+            turboKit.getParts().add(suspensionKit);
+            productRepository.save(turboKit);
+
+            // ECU Tuning Module associations
+            ecuModule.getParts().add(battery);
+            ecuModule.getParts().add(syntheticOil);
+            productRepository.save(ecuModule);
+
+            // Performance Clutch Kit associations
+            clutchKit.getParts().add(brakePads);
+            clutchKit.getParts().add(suspensionKit);
+            productRepository.save(clutchKit);
+        }
+
         System.out.println("Started in Bootstrap");
         System.out.println("Number of Products: " + productRepository.count());
         System.out.println("Number of Parts: " + partRepository.count());

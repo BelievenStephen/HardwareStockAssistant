@@ -73,9 +73,7 @@ Testing confirmed that inventory decrement and message display functionalities a
   •  Modify the code to enforce that the inventory is between or at the minimum and maximum value.
 ### Summary of Changes
 Implemented functionality to track minimum and maximum inventory levels for parts, updated forms to allow setting these values, enforced inventory constraints, and ensured persistent storage file renaming.
-
 ### Detailed Changes
-
 - **Part.java**
   - Added fields for minInv and maxInv, including getters and setters (Lines 32-36, 100-114).
   - Implemented method `isInventoryValid` to enforce inventory constraints (Lines 117-119).
@@ -89,3 +87,14 @@ Implemented functionality to track minimum and maximum inventory levels for part
 - **Controller Changes**
   - Updated `AddInhousePartController.java` and `AddOutsourcedPartController.java` to validate inventory against min/max constraints before saving (Lines 40-54 in AddInhousePartController.java; Lines 41-52 in AddOutsourcedPartController.java).
 These changes collectively ensure that inventory levels for parts are tracked within specified minimum and maximum limits, improving the inventory management capabilities of our application.
+
+
+## Step H: Validations for between, maximum and minimum fields.
+- **Prompt**: Add validation for between or at the maximum and minimum fields.
+### Summary of Changes
+Implemented functionality to display error messages for
+### Detailed Changes
+- **Part.java**
+  - Added validation for low inventory when adding or updating the parts (Lines 54-56, 98-100).
+  - Added validation for low inventory when adding or updating the products (Lines 112-116).
+  - Added validation if inventory is greater than maximum when adding or updating the parts (Lines 57-59, 101-103).
