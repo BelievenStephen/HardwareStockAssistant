@@ -15,3 +15,4 @@ This project customizes a Spring application for retail inventory management, ad
 - **File Created**: `COMMIT_README.md`
 - **Description**: Initialized the project documentation file to track changes made for each part of the project.
 
+
