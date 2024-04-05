@@ -28,9 +28,21 @@ This project customizes a Spring application for retail inventory management, ad
   - `mainscreen.html`: Added navigation button to About page on line 20.
   - `MainScreenController.java`: Added `@GetMapping` for the "/about" endpoint to serve the About page on lines 33-37.
 
-## Part E:
+## PART E:
 - **Prompt**: Add a sample inventory appropriate for your chosen store to the application. You should have five parts and five products in your sample inventory and should not overwrite existing data in the database.
 Note: Make sure the sample inventory is added only when both the part and product lists are empty. When adding the sample inventory appropriate for the store, the inventory is stored in a set so duplicate items cannot be added to your products. When duplicate items are added, make a “multi-pack” part.
 - **File Modified**:
   - BootstrapData.java: Added an if statement (Lines 64-109) to add sample inventory when both the part and product lists are both empty
   - InhousePart.java: Added a constructor (Lines 20-24) to handle creation of InhousePart with specific ID.
+
+## PART F:
+- **Prompt**: Add a “Buy Now” button to your product list. Your “Buy Now” button must meet each of the following parameters:
+  •  The “Buy Now” button must be next to the buttons that update and delete products.
+  •  The button should decrement the inventory of that product by one. It should not affect the inventory of any of the associated parts.
+  •  Display a message that indicates the success or failure of a purchase.
+- **File Modified**:
+  - mainscreen.html:
+    - Lines 86-89: Added "Buy Now" button allowing users to purchase products.
+    - Lines 20-23: Inserted div for displaying success and error messages to give feedback after purchase attempts.
+  - MainScreenController.java:
+    - Lines 68-81: Added `@PostMapping` method buyProduct to handle product purchase requests. Included logic to decrement product inventory, check stock availability, and use RedirectAttributes to pass success or error messages to the view.
