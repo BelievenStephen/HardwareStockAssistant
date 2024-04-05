@@ -1,5 +1,6 @@
 package com.example.demo.bootstrap;
 
+import com.example.demo.domain.InhousePart;
 import com.example.demo.domain.OutsourcedPart;
 import com.example.demo.domain.Part;
 import com.example.demo.domain.Product;
@@ -58,6 +59,52 @@ public class BootStrapData implements CommandLineRunner {
         List<OutsourcedPart> outsourcedParts=(List<OutsourcedPart>) outsourcedPartRepository.findAll();
         for(OutsourcedPart part:outsourcedParts){
             System.out.println(part.getName()+" "+part.getCompanyName());
+        }
+
+        if (partRepository.count() == 0 && productRepository.count() == 0) {
+            // Create and save sample Parts
+            InhousePart cpu = new InhousePart("CPU", 250.00, 10, 123);
+            partRepository.save(cpu);
+            InhousePart gpu = new InhousePart("GPU", 400.00, 5, 124);
+            partRepository.save(gpu);
+            InhousePart ram = new InhousePart("RAM", 150.00, 20, 125);
+            partRepository.save(ram);
+            InhousePart hardDrive = new InhousePart("Hard Drive", 100.00, 15, 126);
+            partRepository.save(hardDrive);
+            InhousePart powerSupply = new InhousePart("Power Supply", 90.00, 10, 127);
+            partRepository.save(powerSupply);
+
+            // Create and save sample Products
+            Product gamingPC = new Product("Gaming PC", 1200.00, 5);
+            gamingPC.getParts().add(cpu);
+            gamingPC.getParts().add(gpu);
+            gamingPC.getParts().add(ram);
+            productRepository.save(gamingPC);
+
+            Product workstation = new Product("Workstation PC", 1500.00, 5);
+            workstation.getParts().add(cpu);
+            workstation.getParts().add(gpu);
+            workstation.getParts().add(ram);
+            workstation.getParts().add(hardDrive);
+            productRepository.save(workstation);
+
+            Product homeOfficePC = new Product("Home Office PC", 800.00, 5);
+            homeOfficePC.getParts().add(cpu);
+            homeOfficePC.getParts().add(ram);
+            productRepository.save(homeOfficePC);
+
+            Product mediaCenter = new Product("Media Center", 700.00, 5);
+            mediaCenter.getParts().add(cpu);
+            mediaCenter.getParts().add(ram);
+            mediaCenter.getParts().add(hardDrive);
+            productRepository.save(mediaCenter);
+
+            Product laptop = new Product("Laptop", 1000.00, 5);
+            laptop.getParts().add(cpu);
+            laptop.getParts().add(ram);
+            productRepository.save(laptop);
+
+            System.out.println("Sample inventory added for Tech Central");
         }
 
         /*

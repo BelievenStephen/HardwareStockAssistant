@@ -27,3 +27,10 @@ This project customizes a Spring application for retail inventory management, ad
   - `about.html`: Created About page with company information and mainscreen navigation button. All lines in file
   - `mainscreen.html`: Added navigation button to About page on line 20.
   - `MainScreenController.java`: Added `@GetMapping` for the "/about" endpoint to serve the About page on lines 33-37.
+
+## Part E:
+- **Prompt**: Add a sample inventory appropriate for your chosen store to the application. You should have five parts and five products in your sample inventory and should not overwrite existing data in the database.
+Note: Make sure the sample inventory is added only when both the part and product lists are empty. When adding the sample inventory appropriate for the store, the inventory is stored in a set so duplicate items cannot be added to your products. When duplicate items are added, make a “multi-pack” part.
+- **File Modified**:
+  - BootstrapData.java: Added an if statement (Lines 64-109) to add sample inventory when both the part and product lists are both empty
+  - InhousePart.java: Added a constructor (Lines 20-24) to handle creation of InhousePart with specific ID.
