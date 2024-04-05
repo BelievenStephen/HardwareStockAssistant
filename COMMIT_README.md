@@ -21,3 +21,9 @@ This project customizes a Spring application for retail inventory management, ad
 - **Lines Modified**: 14 & 19
 - **Description**: Updated the title & h1 to "Tech Central" on line.
 
+## PART D: 
+- **Prompt**: Add an “About” page to the application to describe your chosen customer’s company to web viewers and include navigation to and from the “About” page and the main screen.
+- **File Modified**: 
+  - `about.html`: Created About page with company information and mainscreen navigation button. All lines in file
+  - `mainscreen.html`: Added navigation button to About page on line 20.
+  - `MainScreenController.java`: Added `@GetMapping` for the "/about" endpoint to serve the About page on lines 33-37.
