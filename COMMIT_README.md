@@ -74,3 +74,9 @@ Note: Make sure the sample inventory is added only when both the part and produc
   - Implemented ApplicationContextAware for direct access to Spring app context (Lines 13-18).
   - Updated isValid to check if there are enough parts to update product and display an error message (Lines 23-43).
   - Adjusted setApplicationContext method to be non-static (Lines 17-18).
+
+## PART I:
+- **Prompt**: Add at least two unit tests for the maximum and minimum fields to the PartTest class in the test package
+- **File(s) Modified**:`PartTest.java`
+- **Lines Changed**: 159-181
+- **Description**: Added unit tests for validating min/max inventory levels of parts. Tests ensure inventory stays within set thresholds. Both tests passed.

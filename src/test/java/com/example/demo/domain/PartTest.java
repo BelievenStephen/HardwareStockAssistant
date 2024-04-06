@@ -156,4 +156,27 @@ class PartTest {
         partOut.setId(1l);
         assertEquals(partIn.hashCode(),partOut.hashCode());
     }
+    @Test
+    void testMinimumInventoryValidation() {
+        int minInv = 5;
+        partIn.setMinInv(minInv);
+        partIn.setInv(minInv - 1);
+        assertEquals(minInv, partIn.getMinInv(), "Inventory should not go below minimum for InhousePart");
+
+        partOut.setMinInv(minInv);
+        partOut.setInv(minInv - 1);
+        assertEquals(minInv, partOut.getMinInv(), "Inventory should not go below minimum for OutsourcedPart");
+    }
+
+    @Test
+    void testMaximumInventoryValidation() {
+        int maxInv = 100;
+        partIn.setMaxInv(maxInv);
+        partIn.setInv(maxInv + 1);
+        assertEquals(maxInv, partIn.getMaxInv(), "Inventory should not exceed maximum for InhousePart");
+
+        partOut.setMaxInv(maxInv);
+        partOut.setInv(maxInv + 1);
+        assertEquals(maxInv, partOut.getMaxInv(), "Inventory should not exceed maximum for OutsourcedPart");
+    }
 }
