@@ -25,10 +25,10 @@ public class PriceProductValidator implements ConstraintValidator<ValidProductPr
 
     public static  ApplicationContext myContext;
 
-    @Override
-    public void initialize(ValidProductPrice constraintAnnotation) {
-        ConstraintValidator.super.initialize(constraintAnnotation);
-    }
+//    @Override
+//    public void initialize(ValidProductPrice constraintAnnotation) {
+//        ConstraintValidator.super.initialize(constraintAnnotation);
+//    }
 
     @Override
     public boolean isValid(Product product, ConstraintValidatorContext constraintValidatorContext) {

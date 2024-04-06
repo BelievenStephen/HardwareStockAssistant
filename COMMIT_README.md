@@ -80,3 +80,12 @@ Note: Make sure the sample inventory is added only when both the part and produc
 - **File(s) Modified**:`PartTest.java`
 - **Lines Changed**: 159-181
 - **Description**: Added unit tests for validating min/max inventory levels of parts. Tests ensure inventory stays within set thresholds. Both tests passed.
+
+## PART J:
+- **Prompt**:  Remove the class files for any unused validators in order to clean your code.
+- **File(s) Modified**:
+  - `DeletePartValidator.java` (Line 28) Left comment for no change after checking validators
+  - `EnufPartsValidator.java` (Line 47) Left comment for no change after checking validators
+  - `PriceProductValidator.java` (Lines28-31) Removed Initialize Validator
+  - `ValidEnufParts.java`(Line 26) Left comment for no change after checking validators
+  - `ValidProductPrice.java` (Line 25) Left comment for no change after checking validators

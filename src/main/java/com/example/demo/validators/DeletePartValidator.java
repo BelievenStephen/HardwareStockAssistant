@@ -24,3 +24,5 @@ public class DeletePartValidator implements ConstraintValidator<ValidDeletePart,
         else return false;
     }
 }
+
+// NEED BOTH OF THESE
