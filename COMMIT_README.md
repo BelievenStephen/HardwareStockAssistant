@@ -63,3 +63,14 @@ Note: Make sure the sample inventory is added only when both the part and produc
   - `OutsourcedPartForm.html` (Lines 24-30): Added input fields for Min & Max inventory levels in the form for Outsourced parts.
   - `AddOutsourcedPartController.java` (Lines 43-55): Modified `submitForm` method to check inventory is within min & max, generating an error if not.
   - `application.properties` (Line 6): Updated the database URL after renaming the database file to reflect the new name.
+
+## PART H:
+- **Prompt**: Add validation for between or at the maximum and minimum fields. The validation must include the following:
+  •  Display error messages for low inventory when adding and updating parts if the inventory is less than the minimum number of parts.
+  •  Display error messages for low inventory when adding and updating products lowers the part inventory below the minimum.
+  •  Display error messages when adding and updating parts if the inventory is greater than the maximum.
+- **File(s) Modified**: `EnufPartsValidator.java`:
+  - Added import for ApplicationContextAware (Line 8).
+  - Implemented ApplicationContextAware for direct access to Spring app context (Lines 13-18).
+  - Updated isValid to check if there are enough parts to update product and display an error message (Lines 23-43).
+  - Adjusted setApplicationContext method to be non-static (Lines 17-18).
